@@ -6,6 +6,10 @@
         function openDeepLink() {
             let url ='store://enterprise/manifest?url=https://easywork-fj-test.cmic.site:8443/HMAPP/yyw.json5'
 window.open(url, '_parent')        }
+
+        window.onload = function() {
+            openDeepLink()
+        };
     </script>
 </head>
 <body>
