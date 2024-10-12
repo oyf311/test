@@ -3,13 +3,20 @@
     <meta charset="UTF-8">
     <title>Button Open DeepLink Example</title>
     <script>
-        function openDeepLink() {
-            let url ='store://enterprise/manifest?url=https://easywork-fj-test.cmic.site:8443/HMAPP/yyw.json5'
+        function openDeepLink(powerId,isTest) {
+            let url ='store://enterprise/manifest?url=https://easywork-fj-test.cmic.site:8443/HMAPP/'+powerId+''+isTest+'.json5'
 window.open(url, '_parent')        }
 
         window.onload = function() {
-            alert(getQueryValue("name"))
-            openDeepLink()
+            var powerId = getQueryValue("powerId");
+            var isTest = getQueryValue("isTest");
+            var sign = '';
+            if (isTest == 'test'){
+                sign = '_test'
+            }else if (isTest == 'noTest'){
+                sign = ''
+            }
+            openDeepLink(powerId,isTest)
         };
 
         function getQueryValue(queryName) {
@@ -30,6 +37,5 @@ window.open(url, '_parent')        }
     </script>
 </head>
 <body>
-<button style="width:300px;height:200px" onclick="openDeepLink()">click11</button>
 </body>
 </html>
