@@ -8,8 +8,25 @@
 window.open(url, '_parent')        }
 
         window.onload = function() {
+            alert(getQueryValue("name"))
             openDeepLink()
         };
+
+        function getQueryValue(queryName) {
+            if (window.location.href.indexOf('?') != -1){
+                var query = decodeURI(window.location.href.substring(window.location.href.indexOf('?')+1,window.location.href.length));
+                //去除连接最后的 #
+                if (query.lastIndexOf("#")>0) {
+                    query = query.substring(0, query.lastIndexOf('#'));
+                }
+                var vars = query.split("&");
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == queryName) { return pair[1]; }
+                }
+            }
+            return "";
+        }
     </script>
 </head>
 <body>
